@@ -1,0 +1,12 @@
+section.login {
+  margin-top: 15%;
+  text-align: center;
+}
+
+section.login > div.card {
+  padding: 20px !important;
+}
+
+section.login label {
+  font-size: 14px;
+}

@@ -1,0 +1,13 @@
+section.registro {
+    margin-top: 15%;
+    text-align: center;
+  }
+  
+  section.registro > div.card {
+    padding: 20px !important;
+  }
+  
+  section.registro label {
+    font-size: 14px;
+  }
+  
