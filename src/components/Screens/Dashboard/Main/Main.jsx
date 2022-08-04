@@ -1,5 +1,4 @@
 import React from 'react'
-import CreateForm from './CreateForm'
 import Registro from '../../Registro'
 
 
