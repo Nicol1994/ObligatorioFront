@@ -1,8 +1,7 @@
 import React from 'react'
-import Registro from '../Registro'
 import './Login.css'
 import LoginForm from './LoginForm'
-import {Button} from 'react-bootstrap';
+
 
 const Login = () => {
   
@@ -15,7 +14,7 @@ const Login = () => {
           <section className='card-body'>
             <LoginForm />
             <br />
-          
+            
           </section>
         </div>
       </section>
