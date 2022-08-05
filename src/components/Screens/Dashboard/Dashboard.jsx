@@ -12,7 +12,7 @@ const Dashboard = () => {
         <div className='col-9 mx-auto'>
           <div className='card'>
             <div className='card-header'>
-              <h5 className='card-header'>Hola</h5>
+              <h5 className='card-header'>Criptomonedas</h5>
             </div>
             <div className='card-body'>
               <Main />

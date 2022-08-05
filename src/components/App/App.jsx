@@ -8,11 +8,11 @@ import {
   Link,
 } from "react-router-dom";
 import 'bootstrap-css-only'
-//import { useSelector } from 'react-redux'
+
 
 
 const App = () => {
-  //const userLogged = useSelector(state => state.user.user)
+  
 
   return (
     <div className='App'>
@@ -26,12 +26,12 @@ const App = () => {
             </li>
           </ul>
       </header>
-      <h1>Hola</h1>
+      
       <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/Login" element={<Login/>}/>
+        <Route index element={<App/>} />
+        <Route path="/Login"  element={<Login/>}/>
         <Route path="/Registro" element={<Registro/>}/>
-        <Route path="/Dashboard" element={<Dashboard/>}/>
+        <Route path="/Dashboard" element={<Dashboard />}/>
       </Routes>
     
     </div>
