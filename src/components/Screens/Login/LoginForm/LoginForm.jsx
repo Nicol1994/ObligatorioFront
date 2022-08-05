@@ -24,7 +24,7 @@ function LoginForm() {
         const user = { apiKey: apiKey, id: id }
         dispatch(setLoginUser(user))
       } catch (error) {
-        alert('Ha ocurrido un error', error)
+        alert('Los campos ingresados no son corretos', error)
       }
     } else {
       alert('Por favor complete los campos')
@@ -33,7 +33,7 @@ function LoginForm() {
   return (
     <>
       <form>
-        <label>Usuario: </label>
+        <label>Nombre de Usuario: </label>
         <br />
         <input className='form-control' type='text' ref={inputUserName} />
         <br />
@@ -43,7 +43,7 @@ function LoginForm() {
         <br />
         <br />
         <Button
-          cta='Login'
+          cta='Ingresar'
           classColor={'btn-primary'}
           onHandleClick={onHandleLogin} />
       </form>

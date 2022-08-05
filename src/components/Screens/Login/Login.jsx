@@ -12,7 +12,7 @@ const Login = () => {
     <>
       <section className='d-flex flex-md justify-content-center login'>
         <div className='card'>
-          <h3>Login </h3>
+          <h3>Inicios de sesión</h3>
           <section className='card-body'>
             <LoginForm />
             <br />

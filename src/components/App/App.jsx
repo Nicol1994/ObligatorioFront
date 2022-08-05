@@ -1,37 +1,32 @@
-import Dashboard from '../Screens/Dashboard'
-import Login from '../Screens/Login'
-import Registro from '../Screens/Registro'
-import React from 'react';
-import {
-  Routes,
-  Route,
-  Link,
-} from "react-router-dom";
 import 'bootstrap-css-only'
-
+import { useSelector } from 'react-redux'
+import { Route, Routes} from 'react-router-dom'
+import Dashboard from '../Screens/Dashboard'
+import Layout from '../Screens/Layout'
+import Login from '../Screens/Login'
+import PrivateRoute from '../Screens/PrivateRoute'
+import Registro from '../Screens/Registro'
+import React from 'react'
 
 
 const App = () => {
-  
+  const userLogged = useSelector(state => state.user.user)
 
   return (
     <div className='App'>
-      <header>
-          <ul>
-            <li>
-              <Link to="/Login">Login</Link>
-            </li>
-            <li>
-              <Link to="/Registro">Registro</Link>
-            </li>
-          </ul>
-      </header>
       
       <Routes>
-        <Route index element={<App/>} />
-        <Route path="/Login"  element={<Login/>}/>
+        <Route path="/"  element={<Login/>}/>
         <Route path="/Registro" element={<Registro/>}/>
-        <Route path="/Dashboard" element={<Dashboard />}/>
+        <Route path='/dashboard' element={
+            <PrivateRoute user={userLogged}>
+              <Layout />
+            </PrivateRoute>
+          }
+        >
+          <Route path='' element={<Dashboard />} />
+      
+        </Route>
       </Routes>
     
     </div>
