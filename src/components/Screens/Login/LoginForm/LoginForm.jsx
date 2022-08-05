@@ -17,7 +17,7 @@ function LoginForm() {
     e.preventDefault()
     const userName = inputUserName.current.value
     const password = inputPassword.current.value
-
+    
     if (userName !== '' && password !== '') {
       try {
         const { apiKey, id } = await login(userName, password)
@@ -43,7 +43,7 @@ function LoginForm() {
         <br />
         <br />
         <Button
-          cta='Ingresar'
+          cta='Login'
           classColor={'btn-primary'}
           onHandleClick={onHandleLogin} />
       </form>

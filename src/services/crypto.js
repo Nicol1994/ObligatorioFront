@@ -15,6 +15,7 @@ const login = async (user, pass) => {
     });
 
     if (response.status === 200) {
+      
       return response.json();
     } else {
       return Promise.reject('Ha ocurrido un error', response.status);
