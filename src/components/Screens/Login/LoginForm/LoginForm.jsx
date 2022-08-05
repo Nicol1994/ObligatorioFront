@@ -3,7 +3,6 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import { setLoginUser } from '../../../../app/slices/userSlice'
 import { login } from '../../../../services/crypto'
-
 import Button from '../../../UI/Button/Button'
 
 
@@ -34,11 +33,11 @@ function LoginForm() {
   return (
     <>
       <form>
-        <label>Username</label>
+        <label>Usuario: </label>
         <br />
         <input className='form-control' type='text' ref={inputUserName} />
         <br />
-        <label>Password</label>
+        <label>Contraseña: </label>
         <br />
         <input className='form-control' type='password' ref={inputPassword} />
         <br />
@@ -49,10 +48,7 @@ function LoginForm() {
           onHandleClick={onHandleLogin} />
       </form>
       <br/>
-      <Button
-          cta='Registro'
-          classColor={'btn-primary'}
-          onHandleClick={onHandleLogin} />
+      
       
     </>
   )

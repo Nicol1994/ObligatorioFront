@@ -1,5 +1,5 @@
 import React from 'react'
-import Registro from '../../Registro'
+
 
 
 const Main = () => {
@@ -7,10 +7,9 @@ const Main = () => {
     <main>
       <div className='grid'>
         <div className='g-col-6'>
-          <Registro />
+          <p>LLenar con lista</p>
         </div>
         <br />
-        
       </div>
       <br />
       

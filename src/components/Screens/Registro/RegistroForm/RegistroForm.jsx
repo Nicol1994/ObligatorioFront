@@ -36,19 +36,19 @@ const RegistroForm = () => {
   return (
     <>
       <form>
-        <label>Username</label>
+        <label>Nombre de Usuario: </label>
         <br />
         <input className='form-control' type='text' ref={inputUserName} />
         <br />
-        <label>Password</label>
+        <label>Contraseña: </label>
         <br />
         <input className='form-control' type='password' ref={inputPassword} />
         <br />
-        <label>Departamento</label>
+        <label>Seleccionar Departamento:</label>
         <br />
         <input className='form-control' type='text' ref={inputDepartamento} />
         <br />
-        <label>Ciudad</label>
+        <label>Seleccionar Ciudad: </label>
         <br />
         <input className='form-control' type='text' ref={inputCiudad} />
         <br />
