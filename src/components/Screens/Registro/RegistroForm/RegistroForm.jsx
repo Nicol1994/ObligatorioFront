@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { setRegistroUser } from '../../../../app/slices/regUserSlice';
 import { registro } from '../../../../services/crypto';
 import Button from '../../../UI/Button/Button'
@@ -10,14 +10,15 @@ import { getCiudades, getDptos } from '../../../../services/crypto'
 import Select from '../../../UI/Select'
 
 const RegistroForm = () => {
+
+
   const navigate = useNavigate()
   const inputUserName = useRef()
   const inputPassword = useRef()
-  const selDepartamento = useRef()
-  const selCiudad = useRef()
-
-
+  const selDepartamento = useSelector(state => state.ubicacion.dptos)
+  const selCiudad = useSelector(state => state.ubicacion.ciudades)
   const dispatch = useDispatch()
+  
   useEffect(() => {
     try {
       ;(async () => {
@@ -40,13 +41,13 @@ const RegistroForm = () => {
     e.preventDefault()
     const userName = inputUserName.current.value
     const password = inputPassword.current.value
-    const departamento = Number(selDepartamento.current.value)
+    const depto = Number(selDepartamento.current.value)
     const ciudad = Number(selCiudad.current.value)
 
-    if (userName !== '' && password !== '' && departamento !== ''  && ciudad !== '' ) {
+    if (userName !== '' && password !== '' && depto !== ''  && ciudad !== '' ) {
       try {
-        console.log(userName, password, departamento, ciudad)
-        const { apiKey, id } = await registro(userName, password, departamento, ciudad)
+        console.log(userName, password, depto, ciudad)
+        const { apiKey, id } = await registro(userName, password, depto, ciudad)
         
         const userReg = { apiKey: apiKey, id: id }
         console.log(userReg)
@@ -81,6 +82,7 @@ const RegistroForm = () => {
           cta='Registro'
           classColor={'btn-primary'}
           onHandleClick={onHandleRegistro}
+          
         />
       </form>
     </>

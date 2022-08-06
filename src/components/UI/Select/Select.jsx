@@ -3,7 +3,7 @@ import React from 'react'
 
 const Select = ({ options, onHandleChange }) => {
   const selectRef = useRef()
- 
+
   const _onHandleChange = () => {
     const idSelected = selectRef.current.value
     onHandleChange(idSelected)
@@ -11,7 +11,7 @@ const Select = ({ options, onHandleChange }) => {
 
   return (
     <select className='form-control' onChange={_onHandleChange} ref={selectRef}>
-      <option selected value="0">
+      <option selected value='0'>
         Seleccione una opción
       </option>
       {options.map(option => (
@@ -28,3 +28,4 @@ Select.defaultProps = {
   onHandleChange: () => {}
 }
 export default Select
+

@@ -1,4 +1,4 @@
-const BASE_URL = 'https://crypto.develotion.com/';
+const BASE_URL = 'https://crypto.develotion.com';
 
 const login = async (user, pass) => {
   try {
@@ -15,7 +15,7 @@ const login = async (user, pass) => {
     });
 
     if (response.status === 200) {
-      
+      console.log(response.json())
       return response.json();
     } else {
       return Promise.reject('Ha ocurrido un error', response.status);
@@ -80,6 +80,7 @@ const getDptos = async () => {
     });
 
     if (response.status === 200) {
+      console.log(response)
       return response.json();
     } else {
       return Promise.reject('Ha ocurrido un error', response.status);

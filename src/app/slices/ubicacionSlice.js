@@ -5,8 +5,8 @@ const initialState = {
   ciudades: [],
 };
 
-export const locationSlice = createSlice({
-  name: 'location',
+export const ubicacionSlice = createSlice({
+  name: 'ubicacion',
   initialState,
   reducers: {
     
@@ -21,5 +21,5 @@ export const locationSlice = createSlice({
   },
 });
 
-export const { setDptos, setCiudades } = locationSlice.actions;
-export default locationSlice.reducer;
+export const { setDptos, setCiudades } = ubicacionSlice.actions;
+export default ubicacionSlice.reducer;

@@ -8,6 +8,7 @@ const Main = () => {
       <div className='grid'>
         <div className='g-col-6'>
           <p>LLenar con lista</p>
+          
         </div>
         <br />
       </div>
