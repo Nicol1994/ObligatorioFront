@@ -1,6 +1,6 @@
 import React from 'react'
 import CreateTrans from './CreateTrans/CreateTrans'
-
+import Table from './Table/Table'
 
 
 const Main = () => {
@@ -10,11 +10,12 @@ const Main = () => {
         <div className='g-col-6'>
           <p>LLenar con lista</p>
           <CreateTrans />
+          
         </div>
         <br />
       </div>
       <br />
-      
+      <Table />
     </main>
   )
 }

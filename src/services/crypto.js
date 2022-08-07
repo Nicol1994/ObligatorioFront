@@ -112,4 +112,26 @@ const getCiudades= async (dptoId) => {
     return Promise.reject(error);
   }
 };
-export { login, registro, getMonedas, getCiudades, getDepartamentos};
+
+const getTransacciones= async (apikey, id) => {
+  try {
+    // Devuelvo la promesa del fetch
+    const response = await fetch(`${BASE_URL}/transacciones.php?idUsuario=1`, {
+      method: 'GET',
+      headers: {
+        'apikey': apikey,
+        'Content-type': 'application/json',
+      },
+    });
+
+    if (response.status === 200) {
+      
+      return response.json();
+    } else {
+      return Promise.reject('Ha ocurrido un error', response.status);
+    }
+  } catch (error) {
+    return Promise.reject(error);
+  }
+};
+export { login, registro, getMonedas, getCiudades, getDepartamentos, getTransacciones};
