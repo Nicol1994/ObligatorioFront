@@ -15,7 +15,7 @@ const login = async (user, pass) => {
     });
 
     if (response.status === 200) {
-      console.log(response.json())
+      
       return response.json();
     } else {
       return Promise.reject('Ha ocurrido un error', response.status);
@@ -70,7 +70,7 @@ const getMonedas= async (apikey) => {
     return Promise.reject(error);
   }
 };
-const getDptos = async () => {
+const getDepartamentos = async () => {
   try {
     const response = await fetch(`${BASE_URL}/departamentos.php`, {
       method: 'GET',
@@ -80,7 +80,6 @@ const getDptos = async () => {
     });
 
     if (response.status === 200) {
-      console.log(response)
       return response.json();
     } else {
       return Promise.reject('Ha ocurrido un error', response.status);
@@ -89,8 +88,10 @@ const getDptos = async () => {
     return Promise.reject(error);
   }
 };
+
 const getCiudades= async (dptoId) => {
   try {
+    
     const response = await fetch(
       `${BASE_URL}/ciudades.php?idDepartamento=${dptoId}`,
       {
@@ -102,6 +103,7 @@ const getCiudades= async (dptoId) => {
     );
 
     if (response.status === 200) {
+      
       return response.json();
     } else {
       return Promise.reject('Ha ocurrido un error', response.status);
@@ -110,4 +112,4 @@ const getCiudades= async (dptoId) => {
     return Promise.reject(error);
   }
 };
-export { login, registro, getMonedas, getCiudades, getDptos};
+export { login, registro, getMonedas, getCiudades, getDepartamentos};

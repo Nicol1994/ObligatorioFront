@@ -1,13 +1,14 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { setLoginUser } from '../../../../app/slices/userSlice'
 import { login } from '../../../../services/crypto'
 import Button from '../../../UI/Button/Button'
-
+import Alert from '../../../UI/Alert/Alert'
 
 
 function LoginForm() {
+  const [message] = useState('')
   const inputUserName = useRef()
   const inputPassword = useRef()
 
@@ -23,6 +24,7 @@ function LoginForm() {
         const { apiKey, id } = await login(userName, password)
         const user = { apiKey: apiKey, id: id }
         dispatch(setLoginUser(user))
+        alert(`${userName} ingreso exitoso!`)
       } catch (error) {
         alert('Los campos ingresados no son corretos', error)
       }
@@ -33,6 +35,11 @@ function LoginForm() {
   return (
     <>
       <form>
+        {message !== '' ? (
+          <Alert message={message} />
+        ) : (
+          ''
+        )}
         <label>Nombre de Usuario: </label>
         <br />
         <input className='form-control' type='text' ref={inputUserName} />

@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  dptos: [],
-  ciudades: [],
+  departamentos:[],
+  ciudades:[],
 };
 
 export const ubicacionSlice = createSlice({
@@ -10,9 +10,9 @@ export const ubicacionSlice = createSlice({
   initialState,
   reducers: {
     
-    setDptos: (state, action) => {
+    setDepartamentos: (state, action) => {
       const { payload } = action;
-      state.dptos = payload;
+      state.departamentos = payload;
     },
     setCiudades: (state, action) => {
       const { payload } = action;
@@ -21,5 +21,5 @@ export const ubicacionSlice = createSlice({
   },
 });
 
-export const { setDptos, setCiudades } = ubicacionSlice.actions;
+export const { setDepartamentos, setCiudades } = ubicacionSlice.actions;
 export default ubicacionSlice.reducer;
