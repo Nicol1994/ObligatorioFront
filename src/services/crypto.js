@@ -134,4 +134,30 @@ const getTransacciones= async (apikey, id) => {
     return Promise.reject(error);
   }
 };
-export { login, registro, getMonedas, getCiudades, getDepartamentos, getTransacciones};
+const addTransaccion = async (id, tipoTrans, moneda, cantidad, valorActual) => {
+  try {
+    // Devuelvo la promesa del fetch
+    const response = await fetch(`${BASE_URL}/transacciones.php`, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify({
+        idUsuario: id,
+        tipoOperacion: tipoTrans,
+        moneda: moneda,
+        cantidad: cantidad,
+        valorActual: valorActual,
+      }),
+    });
+
+    if (response.status === 200) {
+      return response.json();
+    } else {
+      return Promise.reject('Ha ocurrido un error', response.status);
+    }
+  } catch (error) {
+    return Promise.reject(error);
+  }
+};
+export { login, registro, getMonedas, getCiudades, getDepartamentos, getTransacciones, addTransaccion};

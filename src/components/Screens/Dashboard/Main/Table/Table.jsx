@@ -1,35 +1,17 @@
-import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { setTrans } from '../../../../../app/slices/transaccionesSlice'
-import { getTransacciones } from '../../../../../services/crypto'
-import './Table.css'
-import TableItemRow from './TableItemRow'
+import { useRef } from 'react'
 import React from 'react'
+import './Table.css'
 
-const Table = () => {
-  const dispatch = useDispatch()
-  const trans = useSelector(state => state.trans.trans)
-  const user = useSelector(state => state.user.user)
-
-  useEffect(() => {
-    try {
-      ;(async () => {
-        const transacciones = await getTransacciones(user.apiKey,user.id)
-        dispatch(setTrans(transacciones))
-        console.log(transacciones)
-      })()
-    } catch (error) {
-      console.error(error)
-    }
-  }, [user, dispatch])
-  console.log(trans)
+const Table = ({transacciones}) => {
+  const tablaRef = useRef()
   
   return (
-    
-    <table className='table table-hover'>
+    <>
+      <h2> Lista de transacciones</h2>
+    <table className='table table-hover' ref={tablaRef}>
       <thead>
         <tr>
-          <th scope='col'>id</th>
+          <th scope='col'>#</th>
           <th scope='col'>Tipo de Operación</th>
           <th scope='col'>Moneda</th>
           <th scope='col'>Cantidad</th>
@@ -37,11 +19,24 @@ const Table = () => {
         </tr>
       </thead>
       <tbody>
-        {
-        trans.map(t =>(<TableItemRow key={t.id} t={t}/>)) 
-        }
+        {transacciones.map(transacion => (
+            <tr  key={transacion.id}>
+                <th scope='row'>{transacion.id}</th>
+                <td>{(transacion.tipo_operacion) === 1 ? 'Compra' : 'Venta'}</td>
+                <td>{transacion.moneda}</td>
+                <td>{transacion.cantidad}</td> 
+                <td>{transacion.valor_actual}</td> 
+            </tr>
+        ))}
       </tbody>
     </table>
+    </>
+    
+    
   )
+}
+Table.defaultProps = {
+  transacciones: [],
+  
 }
 export default Table
