@@ -3,7 +3,7 @@ const TableItemRow = ({ transaccion }) => {
   
   return (
     <>
-      <tr key={transaccion.id}>
+      <tr >
           <th scope='row'>{transaccion.id}</th>
           <td>{transaccion.tipo_operacion}</td>
           <td>{transaccion.moneda}</td>

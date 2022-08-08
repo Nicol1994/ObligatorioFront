@@ -1,7 +1,7 @@
 import React from 'react'
 import { getMonedas } from '../../../../../services/crypto'
 import { useRef, useEffect } from 'react'
-import { setMoneda} from '../../../../../app/slices/monedaSlice'
+import { setMoneda, setMonedaCot} from '../../../../../app/slices/monedaSlice'
 import { useSelector, useDispatch } from 'react-redux'
 import Button from '../../../../UI/Button/Button'
 import Select from '../../../../UI/Select/Select'
@@ -12,7 +12,7 @@ const selTrans = useRef()
 const monedas = useSelector(state => state.moneda.moneda)
 const user = useSelector(state => state.user.user)
 const inputCantidad = useRef()
-const valor = useRef()
+const valor = useSelector(state => state.moneda.monedaCot)
 
 const dispatch = useDispatch()
 console.log(user)
@@ -30,7 +30,8 @@ console.log(user)
       console.log(idMoneda)
       const { monedas } = await getMonedas(user.apiKey)
       const mostrar = monedas.filter( moneda => moneda.id === Number(idMoneda))
-      console.log(mostrar)
+      console.log(mostrar[0].cotizacion)
+      dispatch(setMonedaCot(mostrar[0].cotizacion)) 
       
       
     } catch (error) {}
@@ -74,9 +75,8 @@ console.log(user)
         <input className='form-control' type='text' ref={inputCantidad} />
         <br />
         <label>Valor actual:</label>
-        <ul>
-          <li value={valor}></li>
-        </ul>
+        <input className='form-control' type='text' readOnly value={valor} />
+        
         <Button
           cta='crearTrans'
           classColor={'btn-primary'}

@@ -38,7 +38,7 @@ const Table = () => {
       </thead>
       <tbody>
         {
-          trans.map(t => (<TableItemRow t={t}/>)) 
+        trans.map(t =>(<TableItemRow key={t.id} t={t}/>)) 
         }
       </tbody>
     </table>

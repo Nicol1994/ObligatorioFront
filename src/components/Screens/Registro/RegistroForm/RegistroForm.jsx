@@ -56,6 +56,7 @@ const RegistroForm = () => {
         const userReg = { apiKey: apiKey, id: id }
         console.log(userReg)
         dispatch(setRegistroUser(userReg))
+        
         alert(`Usuario ${userName}, Departamento ${depto} - Ciudad ${ciudadN} credo con exito!`)
         navigate('/')
       } catch (error) {

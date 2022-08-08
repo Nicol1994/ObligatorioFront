@@ -1,6 +1,6 @@
 import React from 'react'
 import CreateTrans from './CreateTrans/CreateTrans'
-import Table from './Table/Table'
+
 
 
 const Main = () => {
@@ -15,7 +15,7 @@ const Main = () => {
         <br />
       </div>
       <br />
-      <Table />
+      
     </main>
   )
 }
