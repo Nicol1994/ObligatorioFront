@@ -1,4 +1,4 @@
-import Charts from './Charts'
+
 import React from 'react'
 import '../Dashboard'
 import Header from './Header'
@@ -10,7 +10,6 @@ const Dashboard = () => {
     <div className='container-fluid dashboard'>
       <>
       <Header />
-      <Charts />
       <div>
         <div className='col-9 mx-auto'>
           <div className='card'>

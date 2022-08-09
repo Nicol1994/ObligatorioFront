@@ -11,18 +11,14 @@ const Charts = () => {
         let inversionTotal = 0
         if(transaccion !== undefined && transaccion !== null){
             transaccion = transaccion.filter(t => t.tipo_operacion == tipoOperacion && t.moneda == idMoneda);
-            //console.log(transaccion);
             
             transaccion.forEach(t => {
                 inversionTotal += t.cantidad *t.valor_actual;   
             });   
-    
-            //console.log('INVERSION TOTAL: ' +inversionTotal) 
-    
+
         }
 
     return inversionTotal;
-    //return 15;
   }
 
 
@@ -32,7 +28,7 @@ const Charts = () => {
     <div className='container metrics'>
       <h5>Compras y Ventas</h5>
         <div className='row'>
-            <div className='col-4'>
+            <div className='col-10'>
                 <div className='card'>
 
                     <div className='card-body'>
