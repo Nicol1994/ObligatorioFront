@@ -116,7 +116,7 @@ const getCiudades= async (dptoId) => {
 const getTransacciones= async (apikey, id) => {
   try {
     // Devuelvo la promesa del fetch
-    const response = await fetch(`${BASE_URL}/transacciones.php?idUsuario=1`, {
+    const response = await fetch(`${BASE_URL}/transacciones.php?idUsuario=${id}`, {
       method: 'GET',
       headers: {
         'apikey': apikey,

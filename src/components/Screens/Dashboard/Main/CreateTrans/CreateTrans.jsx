@@ -2,11 +2,14 @@ import React from 'react'
 import { getMonedas, addTransaccion} from '../../../../../services/crypto'
 import { useRef, useEffect, useState } from 'react'
 import { setMonedas, setMonedaCot, setMoneda} from '../../../../../app/slices/monedaSlice'
-//import { addNewTrans} from '../../../../../app/slices/transaccionesSlice'
+import { addNewTrans} from '../../../../../app/slices/transaccionesSlice'
 import { useSelector, useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import { setLogoutUser } from '../../../../../app/slices/userSlice'
 import Button from '../../../../UI/Button/Button'
 import Select from '../../../../UI/Select/Select'
+import { addListener } from '@reduxjs/toolkit'
+
 
 
 const CreateTrans = () => {
@@ -14,7 +17,9 @@ const CreateTrans = () => {
   const selTrans = useRef()
   const monedas = useSelector(state => state.moneda.monedas)
   const moneda = useSelector(state => state.moneda.moneda)
+  const navigate = useNavigate()
   const user = useSelector(state => state.user.user)
+  
   const inputCantidad = useRef()
   const valor = useSelector(state => state.moneda.monedaCot)
   const dispatch = useDispatch()
@@ -46,18 +51,16 @@ const CreateTrans = () => {
       const { idTransaccion, mensaje, codigo} = await addTransaccion(user.apiKey, transaccion)
       console.log(idTransaccion, mensaje, codigo)
       if (codigo === 200) {
-        const newTrans = {
+        const newTodo = {
           id: idTransaccion,
-          idUsuario: transaccion.idUsuario,
-          tipoOperacion: transaccion.tipoOperacion,
+          tipo_operacion: transaccion.tipo_operacion,
           moneda: transaccion.moneda,
           cantidad: transaccion.cantidad,
-          valorActual: transaccion.valorActual,
+          valor_actual: transaccion.valor_actual,
+
         }
-        console.log(newTrans)
-        
-        // 2. Actualizo mi store
-        //dispatch(addNewTrans(newTrans))
+        dispatch(addNewTrans(newTodo))
+        navigate('/Dashboard')
         
       } else {
         alert('Ha ocurrido un error')
@@ -86,9 +89,11 @@ const CreateTrans = () => {
       try {
         console.log(trans, monedaVal, cantidad, valorActual)
         onAddTrans( {idUsuario: user.id, tipoOperacion: Number(trans), moneda: monedaVal, cantidad: Number(cantidad), valorActual: valorActual})
-  
+        alert('La transaccion fue creada con exito')
+        navigate('/Dashboard');
+
       } catch (error) {
-        alert('4Ha ocurrido un error', error)
+        alert('Ha ocurrido un error', error)
       }
     } else {
       alert('Por favor complete los campos')
@@ -117,7 +122,7 @@ const CreateTrans = () => {
         <input className='form-control' type='text' readOnly value={valor} />
         <br/>
         <Button
-          cta='crearTrans'
+          cta='Crear'
           classColor={'btn-primary'}
           onHandleClick={onHandle}
           disabled={btnDisabled}
