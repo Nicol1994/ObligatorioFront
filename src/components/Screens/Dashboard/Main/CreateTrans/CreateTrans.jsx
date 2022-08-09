@@ -24,7 +24,7 @@ const CreateTrans = () => {
       ;(async () => {
         const { monedas } = await getMonedas(user.apiKey)
         console.log(monedas)
-        dispatch(setMonedas(monedas))
+        dispatch(setMonedas(monedas)) 
       })()
     } catch (error) {}
   }, [dispatch])
