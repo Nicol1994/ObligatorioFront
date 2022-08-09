@@ -10,15 +10,19 @@ import { getDepartamentos, getCiudades } from '../../../../services/crypto'
 import Select from '../../../UI/Select'
 import Alert from '../../../UI/Alert'
 
+
 const RegistroForm = () => {
-  const [message] = useState('')
+  const [message, setMensaje] = useState('')
   const [btnDisabled] = useState(false)
   const [btnCta] = useState('Registro')
+  const [idDepto, setDepto] = useState(null);
+  const [idCiudad, setCiudad] = useState(null);
   const navigate = useNavigate()
   const inputUserName = useRef()
   const inputPassword = useRef()
   const departamento = useSelector(state => state.ubicacion.departamentos)
   const ciudad = useSelector(state => state.ubicacion.ciudades)
+  
   const dispatch = useDispatch()
   useEffect(() => {
     try {
@@ -30,12 +34,17 @@ const RegistroForm = () => {
   }, [dispatch])
   
  
-  const _onHandleDptoChange = async idDpto => {
-    
+  const _onHandleDptoChange = async id => {
+    setDepto(id);
+    console.log(idDepto)
     try {
-      const { ciudades } = await getCiudades(idDpto)
+      const { ciudades } = await getCiudades(id)
       dispatch(setCiudades(ciudades))
     } catch (error) {}
+  }
+  const _onHandleCiudChange = async id => {
+    setCiudad(id)
+    console.log(idCiudad)
   }
 
 
@@ -44,19 +53,19 @@ const RegistroForm = () => {
     console.log(e)
     const userName = inputUserName.current.value
     const password = inputPassword.current.value
-    const depto = departamento.value
-    const ciudadN = ciudad.value
-   
-    if (userName !== '' && password !== '' && depto !== ''  && ciudadN !== '' ) {
+    const depto = idDepto;
+    const ciudad = idCiudad;
+   console.log(userName, password,depto, ciudad)
+    if (userName !== '' && password !== '' && depto !== ''  && ciudad !== '' ) {
       try {
         console.log(userName, password, depto, ciudad)
-        const { apiKey, id } = await registro(userName, password, depto, ciudadN)
+        const { apiKey, id } = await registro(userName, password, depto, ciudad)
         
         const userReg = { apiKey: apiKey, id: id }
         console.log(userReg)
         dispatch(setRegistroUser(userReg))
         
-        alert(`Usuario ${userName}, Departamento ${depto} - Ciudad ${ciudadN} credo con exito!`)
+        setMensaje(`Usuario ${userName}, Departamento ${depto} - Ciudad ${ciudad} credo con exito!`)
         navigate('/')
       } catch (error) {
         alert('Ha ocurrido un error', error)
@@ -82,10 +91,10 @@ const RegistroForm = () => {
         <input className='form-control' type='password' ref={inputPassword} />
         <br />
         <label>Seleccionar Departamento</label>
-        <Select options={departamento} onHandleChange={_onHandleDptoChange} />
+        <Select options={departamento}  onHandleChange={_onHandleDptoChange} />
         <br />
         <label>Seleccionar Ciudad</label>
-        <Select options={ciudad} />
+        <Select options={ciudad} onHandleChange={_onHandleCiudChange} />
         <br />
         <Button
           cta={btnCta}
