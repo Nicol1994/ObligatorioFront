@@ -1,15 +1,15 @@
 import ReactApexChart from 'react-apexcharts'
 import React from 'react'
 
-const Pie = ({ compras }) => {
+const Pie = ({ Vintereum, Pesocoin, Monereum, Finance_URU, MvdCoin, Hexagon, Guitchain, Money_Token, MDG}) => {
   const data = {
-    series: [compras],
+    series: [Vintereum, Pesocoin, Monereum, Finance_URU, MvdCoin, Hexagon, Guitchain, Money_Token, MDG],
     options: {
       chart: {
-        height: 350,
+        height: 1000,
         type: 'pie'
       },
-      labels: ['Compras'],
+      labels: ['Vintereum', 'Pesocoin', 'Monereum', 'Finance URU', 'MvdCoin', 'Hexagon', 'Guitchain', 'Money Token', 'MDG'],
       legend: {
         position: 'bottom'
       }
@@ -21,5 +21,4 @@ const Pie = ({ compras }) => {
     </div>
   )
 }
-
 export default Pie
