@@ -8,13 +8,14 @@ import { useNavigate } from 'react-router-dom'
 import { setCiudades, setDepartamentos } from '../../../../app/slices/ubicacionSlice'
 import { getDepartamentos, getCiudades } from '../../../../services/crypto'
 import Select from '../../../UI/Select'
-import Alert from '../../../UI/Alert'
+import Alert from '../../../UI/Alert/Alert'
 
 
 const RegistroForm = () => {
-  const [message, setMensaje] = useState('')
-  const [btnDisabled] = useState(false)
-  const [btnCta] = useState('Registro')
+  const [message, setMessage] = useState('')
+  const [messageClass, setClass] = useState('')
+  const [btnDisabled] = useState(false);
+  const [btnCta] = useState('Registro');
   const [idDepto, setDepto] = useState(null);
   const [idCiudad, setCiudad] = useState(null);
   const navigate = useNavigate()
@@ -64,24 +65,38 @@ const RegistroForm = () => {
         const userReg = { apiKey: apiKey, id: id }
         console.log(userReg)
         dispatch(setRegistroUser(userReg))
+        setClass('danger');
+        setMessage(`Usuario ${userName} inicio de sesión correcto !`);
         
-        setMensaje(`Usuario ${userName}, Departamento ${depto} - Ciudad ${ciudad} credo con exito!`)
+        
+        console.log(message)
         navigate('/')
       } catch (error) {
-        alert('Ha ocurrido un error', error)
+        setClass('danger');
+        setMessage('Ha ocurrido un error');
+        _resetMessage()
+        //alert('Ha ocurrido un error', error)
       }
     } else {
-      alert('Por favor complete los campos')
+      setClass('danger');
+      setMessage('Ha ocurrido un error');
+      _resetMessage()
+      //alert('Por favor complete los campos')
     }
+  }
+
+  const _resetMessage = () => {
+    setTimeout(() => {
+      setClass('')
+      setMessage('')
+    }, 3000)
   }
   return (
     <>
       <form>
-      {message !== '' ? (
-          <Alert  message={message} />
-        ) : (
-          ''
-        )}
+        
+        <Alert classColor={messageClass} message={message} />
+        
         <label>Nombre de Usuario: </label>
         <br />
         <input className='form-control' type='text' ref={inputUserName} />
