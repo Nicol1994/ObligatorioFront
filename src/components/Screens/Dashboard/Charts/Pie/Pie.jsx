@@ -1,15 +1,15 @@
 import ReactApexChart from 'react-apexcharts'
 import React from 'react'
 
-const Pie = ({ completed, incompleted }) => {
+const Pie = ({ compras }) => {
   const data = {
-    series: [completed, incompleted],
+    series: [compras],
     options: {
       chart: {
         height: 350,
         type: 'pie'
       },
-      labels: ['Completed', 'Incompleted'],
+      labels: ['Compras'],
       legend: {
         position: 'bottom'
       }

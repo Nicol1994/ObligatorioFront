@@ -1,13 +1,21 @@
-import { useSelector } from 'react-redux'
+import { useSelector} from 'react-redux'
 import React from 'react'
 import Pie from './Pie'
 
-const Charts = () => {
-  const todos = useSelector(state => state.todos.filteredTodos)
 
-  const _calculateCompleted = () => {
-    //return todos.filter(todo => todo.completed).length
-    return 15;
+const Charts = () => {
+  let trans = useSelector(state => state.trans.trans)
+
+  const _calculateCompleted = async () => {
+    //const transaccion = trans.transacciones.filter(t => t.tipo_operacion == 1).length;
+    const transaccion = trans.transacciones;
+    if(transaccion !== undefined && transaccion !== null){
+        console.log(transaccion);
+
+    }
+
+    return transaccion;
+    //return 15;
   }
 
   const _calculateIncomplete = () => {
@@ -22,8 +30,8 @@ const Charts = () => {
                 <div className='card'>
                     <div className='card-body'>
                         <Pie
-                            completed={_calculateCompleted()}
-                            incompleted={_calculateIncomplete()}
+                            compras={_calculateCompleted()}
+                            
                         />
                     </div>
                 </div>
