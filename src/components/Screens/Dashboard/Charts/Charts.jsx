@@ -30,13 +30,13 @@ const Charts = () => {
 
   return (
     <div className='container metrics'>
-      <h5>Compras y Ventas</h5>
+      <h2>Compras y Ventas</h2>
         <div className='row'>
-            <div className='col-4'>
+            <div className='col-10'>
                 <div className='card'>
 
                     <div className='card-body'>
-                <h6>Compras</h6>
+                    <h6>Compras</h6>
 
                         <Pie
                             Vintereum={_calculateCompras(1,1)}
@@ -51,7 +51,7 @@ const Charts = () => {
                         />
                     </div>
                     <div className='card-body'>
-                <h6>Ventas</h6>
+                    <h6>Ventas</h6>
 
                         <Pie
                             Vintereum={_calculateCompras(2,1)}
