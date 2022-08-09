@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  moneda:[],
+  monedas:[],
+  moneda: null,
   monedaCot: null,
 };
 
@@ -10,6 +11,10 @@ export const monedaSlice = createSlice({
   initialState,
   reducers: {
     // Actions
+    setMonedas: (state, action) => {
+      const { payload } = action;
+      state.monedas = payload;
+    },
     setMoneda: (state, action) => {
       const { payload } = action;
       state.moneda = payload;
@@ -23,5 +28,5 @@ export const monedaSlice = createSlice({
   },
 });
 
-export const { setMoneda, setMonedaCot } = monedaSlice.actions;
+export const { setMonedas, setMonedaCot, setMoneda } = monedaSlice.actions;
 export default monedaSlice.reducer;

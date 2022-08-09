@@ -14,14 +14,14 @@ const Transacciones = () => {
           ;(async () => {
             const transacciones = await getTransacciones(user.apiKey,user.id)
             dispatch(setTrans(transacciones))
-            console.log(transacciones)
+            
           })()
         } catch (error) {
           console.error(error)
         }
       }, [user, dispatch])
       const transaccion = trans.transacciones;
-      console.log(transaccion)
+      
     return(
         <div className="row">
             {

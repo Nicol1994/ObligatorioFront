@@ -134,24 +134,26 @@ const getTransacciones= async (apikey, id) => {
     return Promise.reject(error);
   }
 };
-const addTransaccion = async (id, tipoTrans, moneda, cantidad, valorActual) => {
+const addTransaccion = async (apikey, transaccion) => {
   try {
     // Devuelvo la promesa del fetch
     const response = await fetch(`${BASE_URL}/transacciones.php`, {
       method: 'POST',
       headers: {
+        'apikey': apikey,
         'Content-type': 'application/json',
       },
       body: JSON.stringify({
-        idUsuario: id,
-        tipoOperacion: tipoTrans,
-        moneda: moneda,
-        cantidad: cantidad,
-        valorActual: valorActual,
+        idUsuario: transaccion.idUsuario,
+        tipoOperacion: transaccion.tipoOperacion,
+        moneda: transaccion.moneda,
+        cantidad: transaccion.cantidad,
+        valorActual: transaccion.valorActual,
       }),
     });
 
     if (response.status === 200) {
+      
       return response.json();
     } else {
       return Promise.reject('Ha ocurrido un error', response.status);

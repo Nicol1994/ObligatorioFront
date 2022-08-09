@@ -17,7 +17,7 @@ export const transaccionesSlice = createSlice({
     },
     addNewTrans: (state, action) => {
       const { payload } = action;
-      state.trans = [...state.todos, payload];
+      state.trans = [...state.trans, payload];
       
     },
     

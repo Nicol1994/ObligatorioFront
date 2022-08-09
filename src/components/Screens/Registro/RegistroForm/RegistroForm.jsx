@@ -24,7 +24,6 @@ const RegistroForm = () => {
     try {
       ;(async () => {
         const { departamentos } = await getDepartamentos()
-        
         dispatch(setDepartamentos(departamentos))
       })()
     } catch (error) {}
